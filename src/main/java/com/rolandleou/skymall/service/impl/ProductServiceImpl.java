@@ -1,5 +1,7 @@
 package com.rolandleou.skymall.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteProductById(Integer productId) {
 		productDao.deleteProductById(productId);
+	}
+
+	@Override
+	public List<Product> getProducts() {
+		return productDao.getProducts();
 	}
 
 }

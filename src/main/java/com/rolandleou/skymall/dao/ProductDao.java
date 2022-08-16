@@ -1,5 +1,7 @@
 package com.rolandleou.skymall.dao;
 
+import java.util.List;
+
 import com.rolandleou.skymall.dto.ProductRequest;
 import com.rolandleou.skymall.model.Product;
 
@@ -12,4 +14,6 @@ public interface ProductDao {
 	void updateProduct(Integer productId, ProductRequest productRequest);
 	
 	void deleteProductById(Integer productId);
+	
+	List<Product> getProducts();
 }
