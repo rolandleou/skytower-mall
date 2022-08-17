@@ -3,6 +3,7 @@ package com.rolandleou.skymall.dao;
 import java.util.List;
 
 import com.rolandleou.skymall.constant.ProductCategory;
+import com.rolandleou.skymall.dto.ProductQueryParams;
 import com.rolandleou.skymall.dto.ProductRequest;
 import com.rolandleou.skymall.model.Product;
 
@@ -16,5 +17,5 @@ public interface ProductDao {
 	
 	void deleteProductById(Integer productId);
 	
-	List<Product> getProducts(ProductCategory category, String search);
+	List<Product> getProducts(ProductQueryParams productQueryParams);
 }
