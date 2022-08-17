@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rolandleou.skymall.constant.ProductCategory;
 import com.rolandleou.skymall.dto.ProductRequest;
 import com.rolandleou.skymall.model.Product;
 import com.rolandleou.skymall.service.ProductService;
@@ -78,9 +80,10 @@ public class ProductController {
 	
 	
 	@GetMapping("/products")
-	public ResponseEntity<List<Product>> getProducts() {
+	public ResponseEntity<List<Product>> getProducts(@RequestParam(required = false) ProductCategory category,
+													@RequestParam(required = false) String search) {
 		
-		List<Product> productList = productService.getProducts();
+		List<Product> productList = productService.getProducts(category, search);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(productList);
 	}
