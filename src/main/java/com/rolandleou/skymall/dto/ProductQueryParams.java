@@ -4,19 +4,15 @@ import com.rolandleou.skymall.constant.ProductCategory;
 
 public class ProductQueryParams {
 	
-	private ProductCategory category;
+    private ProductCategory productCategory;
 	private String search;
-	private String orderBy;
+    private String OrderBy;
 	private String sort;
 	private Integer limit;
 	private Integer offset;
 	
-	public ProductCategory getCategory() {
-		return category;
-	}
-	public void setCategory(ProductCategory category) {
-		this.category = category;
-	}
+
+
 	public String getSearch() {
 		return search;
 	}
@@ -24,16 +20,22 @@ public class ProductQueryParams {
 		this.search = search;
 	}
 	public String getOrderBy() {
-		return orderBy;
+        return OrderBy;
 	}
 	public void setOrderBy(String orderBy) {
-		this.orderBy = orderBy;
+        OrderBy = orderBy;
 	}
 	public String getSort() {
 		return sort;
 	}
 	public void setSort(String sort) {
 		this.sort = sort;
+	}
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
 	}
 	public Integer getLimit() {
 		return limit;

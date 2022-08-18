@@ -61,7 +61,7 @@ public class ProductController {
 		Product product = productService.getProductById(productId);
 		
 		if (product == null) {
-			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		
 		// then execute to update product info
@@ -96,7 +96,7 @@ public class ProductController {
 			@RequestParam(defaultValue = "0") Integer offset
 			) {
 		ProductQueryParams productQueryParams = new ProductQueryParams();
-		productQueryParams.setCategory(category);
+		productQueryParams.setProductCategory(category);
 		productQueryParams.setSearch(search);
 		productQueryParams.setOrderBy(orderBy);
 		productQueryParams.setSort(sort);
@@ -108,7 +108,7 @@ public class ProductController {
 		// 取得 product 總數
 		Integer total = productService.countProduct(productQueryParams);
 		
-		Page<Product> page = new Page<Product>();
+		Page<Product> page = new Page<>();
 		page.setLimit(limit);
 		page.setOffset(offset);
 		page.setTotal(total);

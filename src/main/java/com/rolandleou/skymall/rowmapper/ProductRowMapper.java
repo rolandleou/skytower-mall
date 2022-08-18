@@ -11,7 +11,7 @@ import com.rolandleou.skymall.model.Product;
 public class ProductRowMapper implements RowMapper {
 
 	@Override
-	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Product product = new Product();
 		
 		product.setProductId(rs.getInt("product_id"));
