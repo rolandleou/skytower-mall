@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rolandleou.skymall.dto.UserLoginRequest;
 import com.rolandleou.skymall.dto.UserRegisterRequest;
 import com.rolandleou.skymall.model.User;
 import com.rolandleou.skymall.service.UserService;
@@ -28,4 +29,13 @@ public class UserController {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(user);
 	}
+	
+	@PostMapping("/users/{userId}")
+	public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
+		
+		User user = userService.login(userLoginRequest);
+				
+		return ResponseEntity.status(HttpStatus.OK).body(user);
+	}
+	
 }

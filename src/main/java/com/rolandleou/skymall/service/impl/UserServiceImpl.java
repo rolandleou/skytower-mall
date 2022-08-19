@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 
 import com.rolandleou.skymall.dao.UserDao;
+import com.rolandleou.skymall.dto.UserLoginRequest;
 import com.rolandleou.skymall.dto.UserRegisterRequest;
 import com.rolandleou.skymall.model.User;
 import com.rolandleou.skymall.service.UserService;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Integer register(UserRegisterRequest userRegisterRequest) {
 		// Check register email
-		User user = userDao.getUserByEmail(userRegisterRequest);
+		User user = userDao.getUserByEmail(userRegisterRequest.getEmail());
 		
 		if (user != null) {
 			log.warn("email {} alreday registered!!", userRegisterRequest.getEmail());
@@ -38,6 +39,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(Integer userId) {
 		return userDao.getUserById(userId);
+	}
+
+	@Override
+	public User login(UserLoginRequest userLoginRequest) {
+		
+		User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+		
+		if (user == null) {
+			log.warn("email {} not registered before!!", userLoginRequest.getEmail());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);			
+		}
+		
+		if (user.getPassword().equals(userLoginRequest.getPassword())) {
+			return user;
+		} else {
+			log.warn("email {} incorrect password!!", userLoginRequest.getEmail());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);				
+		}
+
 	}
 
 }
