@@ -10,6 +10,7 @@ import com.rolandleou.skymall.dao.OrderDao;
 import com.rolandleou.skymall.dao.ProductDao;
 import com.rolandleou.skymall.dto.BuyItem;
 import com.rolandleou.skymall.dto.CreateOrderRequest;
+import com.rolandleou.skymall.model.Order;
 import com.rolandleou.skymall.model.OrderItem;
 import com.rolandleou.skymall.model.Product;
 import com.rolandleou.skymall.service.OrderService;
@@ -49,6 +50,18 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.createOrderItems(orderId, orderItemList);
 		
 		return orderId;
+	}
+
+	@Override
+	public Order getOrderById(Integer orderId) {
+		
+		Order order = orderDao.getOrderById(orderId);
+		
+		List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+		
+		order.setOrderItemList(orderItemList);
+		
+		return order;
 	}
 
 }
