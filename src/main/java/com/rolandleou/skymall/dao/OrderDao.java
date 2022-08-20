@@ -2,6 +2,7 @@ package com.rolandleou.skymall.dao;
 
 import java.util.List;
 
+import com.rolandleou.skymall.dto.OrderQueryParams;
 import com.rolandleou.skymall.model.Order;
 import com.rolandleou.skymall.model.OrderItem;
 
@@ -14,4 +15,8 @@ public interface OrderDao {
 	Order getOrderById(Integer orderId);
 	
 	List<OrderItem> getOrderItemsByOrderId(Integer orderId);
+	
+	List<Order> getOrders(OrderQueryParams orderQueryParams);
+	
+	Integer countOrder(OrderQueryParams orderQueryParams);
 }
